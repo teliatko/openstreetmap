@@ -1,18 +1,21 @@
-docker build . -f Dockerfile -t openstreetmap-custom:latest
+export volume_name=openstreetmap-data-custom-original; echo ${volume_name}
+export image_name=openstreetmap-custom:v0.0-original; echo ${image_name}
 
-docker volume create openstreetmap-data-custom
+docker build . -f Dockerfile -t ${image_name}
 
-docker run \
-    -v openstreetmap-data-custom:/var/lib/postgresql/12/main \
-    openstreetmap-custom:latest \
+# docker volume rm ${volume_name}
+docker volume create ${volume_name}
+
+docker run --rm \
+    -v ${volume_name}:/var/lib/postgresql/12/main \
+    ${image_name} \
     import
 
 docker run \
     -p 8888:80 \
-    -v openstreetmap-data-custom:/var/lib/postgresql/12/main \
-    -d openstreetmap-custom:latest \
+    -v ${volume_name}:/var/lib/postgresql/12/main \
+    -d ${image_name} \
     run
 
 -- 
 
-docker volume rm openstreetmap-data-custom
