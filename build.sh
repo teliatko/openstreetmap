@@ -1,5 +1,5 @@
-export volume_name=openstreetmap-data-custom-original; echo ${volume_name}
-export image_name=openstreetmap-custom:v0.0-original; echo ${image_name}
+export volume_name=openstreetmap-data-custom-modified; echo ${volume_name}
+export image_name=openstreetmap-custom:v0.0-modified; echo ${image_name}
 
 docker build . -f Dockerfile -t ${image_name}
 
@@ -12,7 +12,7 @@ docker run --rm \
     import
 
 docker run \
-    -p 8888:80 \
+    -p 8889:80 \
     -v ${volume_name}:/var/lib/postgresql/12/main \
     -d ${image_name} \
     run
