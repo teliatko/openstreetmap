@@ -1,21 +1,22 @@
-export volume_name=openstreetmap-data-custom-modified; echo ${volume_name}
-export image_name=openstreetmap-custom:v0.0-modified; echo ${image_name}
+#!/usr/bin/env bash
 
+set -e
+
+this_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+
+cd ${this_dir}
+
+version=$1
+
+if [[ -z ${version} ]]; then
+  echo "version not set" && exit 1
+fi
+
+image_name=openstreetmap-custom:${version}
+echo ${version} > version.txt
+echo "Preparing image: ${image_name}"
+
+echo "Building image..."
 docker build . -f Dockerfile -t ${image_name}
 
-# docker volume rm ${volume_name}
-docker volume create ${volume_name}
-
-docker run --rm \
-    -v ${volume_name}:/var/lib/postgresql/12/main \
-    ${image_name} \
-    import
-
-docker run \
-    -p 8889:80 \
-    -v ${volume_name}:/var/lib/postgresql/12/main \
-    -d ${image_name} \
-    run
-
--- 
-
+echo "DONE"

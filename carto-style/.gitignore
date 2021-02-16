@@ -1,0 +1,13 @@
+.thumb.png
+layers/*
+cartocc.json
+project.mml
+*.xml
+cache/*
+node_modules/*
+DEM/data/*
+DEM/tmp/*
+localconfig.js
+localconfig.json
+Leaflet.TileLegend/
+tmp/

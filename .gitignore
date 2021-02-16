@@ -1,0 +1,7 @@
+# Result of scripts
+version.txt
+map-data/
+carto-style/DEM/data/
+
+# Temporary testing directory
+tmp/
