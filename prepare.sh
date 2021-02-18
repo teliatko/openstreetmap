@@ -10,9 +10,9 @@ cd ${this_dir}/carto-style/DEM
 ./hillshade.sh
 ./merge_contour.sh
 wget https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
-unzip https://osmdata.openstreetmap.de/download/simplified-land-polygons-complete-3857.zip
+unzip simplified-land-polygons-complete-3857.zip
 wget https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip
-uzip https://osmdata.openstreetmap.de/download/land-polygons-split-3857.zip
+unzip land-polygons-split-3857.zip
 
 cd ${this_dir}/map-data
 
