@@ -2,7 +2,6 @@
 layers/*
 cartocc.json
 project.mml
-*.xml
 cache/*
 node_modules/*
 DEM/data/*
